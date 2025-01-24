@@ -1,6 +1,6 @@
-<?php 
+<?php
 session_start();
-session_destroy();
-header('Location: index.php');
+session_destroy(); // Menghapus semua session
+header('Location: index.php'); // Redirect ke halaman login
 exit;
 ?>

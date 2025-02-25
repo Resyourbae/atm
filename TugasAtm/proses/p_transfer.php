@@ -27,7 +27,7 @@ if ($saldo_pengirim < $jumlah) {
 }
 
 // Cek apakah penerima ada di database
-$sql = "SELECT saldo FROM users WHERE username='$tujuan'";
+$sql = "SELECT saldo FROM atm WHERE username='$tujuan'";
 $result = $con->query($sql);
 
 if ($result->num_rows > 0) {
@@ -42,7 +42,7 @@ if ($result->num_rows > 0) {
     $saldo_penerima_baru = $saldo_penerima + $jumlah;
     $query2 = "UPDATE atm SET saldo=$saldo_penerima_baru WHERE username='$tujuan'";
 
-    if ($con->query($query1) && $conn->query($query2)) {
+    if ($con->query($query1) && $con->query($query2)) {
         echo "<script>alert('Transfer berhasil!'); window.location.href='../dashboard.php';</script>";
     } else {
         echo "<script>alert('Terjadi kesalahan saat transfer!'); window.location.href='../transfer.php';</script>";

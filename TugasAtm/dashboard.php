@@ -23,223 +23,8 @@ if (!isset($_SESSION['username'])) {
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css'>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./fontawesome/css/all.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
 </head>
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        background-color: rgba(14, 29, 62, 0.97);
-        /* background-image: url(./img/); */
-        background-size: cover;
-        background-repeat: no-repeat;
-        font-family: "Space Grotesk", serif;
-    }
-
-    .user {
-        display: flex;
-        align-items: center;
-    }
-
-    .nav {
-        background-color: rgb(55, 60, 160);
-        padding: 10px 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        border-bottom: 2px solid rgb(74, 3, 102);
-        box-shadow: 0 0 7px rgb(61, 0, 102);
-    }
-
-    .nav h3 {
-        font-weight: bold;
-    }
-
-    .nav a {
-        color: white;
-    }
-
-    .nav a:hover {
-        color: #f1f1f1;
-    }
-
-    .nav i {
-        font-size: 20px;
-    }
-
-    .nav i:hover {
-        color: #f1f1f1;
-    }
-
-    nav .nav .user {
-        display: flex;
-        align-items: center;
-        margin: 0 10px;
-    }
-
-    nav .nav .user h3 {
-        font-weight: bold;
-        border-radius: 20px;
-        /* text-shadow: 0 0 10px rgb(255, 255, 255); */
-        color: rgb(255, 255, 255);
-        padding: 10px;
-        box-shadow: 0 0 10px rgb(255, 255, 255);
-        background-color: rgb(29, 6, 70);
-        margin: 0 20px;
-    }
-
-    .button button {
-        padding: 0.8em 1.7em;
-        background-color: transparent;
-        border-radius: 50px;
-        position: relative;
-        overflow: hidden;
-        cursor: pointer;
-        transition: .5s;
-        font-weight: 400;
-        font-size: 17px;
-        border: 1px solid;
-        font-family: inherit;
-        text-transform: unset;
-        color: rgb(227, 226, 255);
-        z-index: 1;
-        text-decoration: none;
-    }
-
-    .button button:after {
-        content: '';
-        display: block;
-        width: 50px;
-        height: 50px;
-        transform: translate(-50%, -50%);
-        position: absolute;
-        border-radius: 50%;
-        z-index: -1;
-        background-color: rgb(239, 143, 9);
-        transition: 1s ease;
-    }
-
-    .button button::before {
-        top: -1em;
-        left: -1em;
-    }
-
-    .button button::after {
-        left: calc(100% + 0.6em);
-        top: calc(100% + 0.6em);
-    }
-
-    .button button:hover::before,
-    button:hover::after {
-        height: 500%;
-        width: 500%;
-    }
-
-    .button button:hover {
-        color: rgba(255, 255, 255, 0.26);
-    }
-
-    button:active {
-        filter: brightness(.9);
-    }
-
-    .main {
-        display: flexbox;
-        box-sizing: border-box;
-        margin: 20px;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-        padding: 50px;
-        border-radius: 20px;
-        margin-top: 10px;
-        max-width: 500px;
-        background-color: rgb(44, 184, 236);
-    }
-
-    .carousel-inner {
-        border-radius: 10px;
-        margin-top: 50px;
-    }
-
-    .carousel-item img {
-        width: 100%;
-        height: 500px;
-        object-fit: cover;
-        border-radius: 10px;
-    }
-
-    /* From Uiverse.io by gharsh11032000 */
-    .card {
-        margin-top: 10px;
-        position: relative;
-        width: 190px;
-        height: 254px;
-        background-color:rgb(175, 210, 205);
-        display: flex;
-        flex-direction: column;
-        justify-content: end;
-        padding: 12px;
-        gap: 12px;
-        border-radius: 8px;
-        cursor: pointer;
-    }
-
-    .card::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        left: -5px;
-        margin: auto;
-        width: 200px;
-        height: 264px;
-        border-radius: 10px;
-        background: linear-gradient(-45deg,rgb(113, 9, 182) 0%,rgb(51, 74, 249) 100%);
-        z-index: -10;
-        pointer-events: none;
-        transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .card::after {
-        content: "";
-        z-index: -1;
-        position: absolute;
-        inset: 0;
-        box-shadow: 0 0 20px 10px rgb(113, 9, 182);
-        background: linear-gradient(-45deg, rgb(113, 9, 182) 0%,rgb(51, 74, 249) 100%);
-        transform: translate3d(0, 0, 0) scale(0.95);
-        filter: blur(20px);
-    }
-
-    .heading {
-        font-size: 20px;
-        text-transform: capitalize;
-        font-weight: 700;
-    }
-
-    .card a:not(.heading) {
-        font-size: 14px;
-    }
-
-    .card a:last-child {
-        color: #e81cff;
-        font-weight: 600;
-    }
-
-    .card:hover::after {
-        filter: blur(30px);
-    }
-
-    .card:hover::before {
-        transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
-    }
-</style>
 
 <body>
     <!-- navbar start -->
@@ -266,13 +51,35 @@ if (!isset($_SESSION['username'])) {
             <div class="button">
                 <button><a href="./proses/logout.php" class="text-decoration-none text-light ms-auto"><i
                             class="fa-solid fa-sign-out fa-fw"></i>Logout</a></button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    🔑Lupa pin?
+                </button>
             </div>
     </nav>
     </div>
     <!-- navbar end -->
 
+    <!-- Saldo anda start -->
+    <div class="saldo">
+        <nav class="navbar navbar-light bg-primary p-3 mb-4">
+            <i class="fa-solid fa-wallet" style="font-size: 30px;"></i>
+            <h4 class="d-flex mr-5">Kamu punya saldo</h4>
+
+            <?php
+            $username = $_SESSION['username'];
+            $sql = "SELECT saldo FROM atm WHERE username='$username'";
+            $result = $con->query($sql);
+            $user = $result->fetch_assoc();
+
+            echo "<p>Rp. " . number_format($user['saldo'], 0, ',', '.') . "</p>";
+            ?>
+
+    </div>
+    </nav>
+    <!-- Saldo anda end -->
+
     <!-- Carousel start -->
-    <div class="container-fluid mt-5">
+    <div class="container-fluid mt-2">
         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="1000">
@@ -298,110 +105,67 @@ if (!isset($_SESSION['username'])) {
     <!-- Carousel end -->
 
     <!-- Card start-->
-     <div class="container mt-5 d-flex justify-content-around">
-    <div class="card">
-        <p class="heading">
-        <i class="fa-solid fa-gem"></i>
-        
-            Top Up Murah!!
-        </p>
-        <p>
-            Top Up
-        </p>
-        <a>See All
-        </a>
-    </div>
-    <div class="card">
-        <p class="heading">
-            Top Up Murah!!
-        </p>
-        <p>
-            Top Up
-        </p>
-        <a>See All
-        </a>
-    </div>
-    <div class="card">
-        <p class="heading">
-            Top Up Murah!!
-        </p>
-        <p>
-            Top Up
-        </p>
-        <a>See All
-        </a>
-    </div>
-    <div class="card">
-        <p class="heading">
-            Popular this month
-        </p>
-        <p>
-            Powered By
-        </p>
-        <a>See All
-        </a>
-    </div>
-    <div class="card">
-        <p class="heading">
-            Popular this month
-        </p>
-        <p>
-            Powered By
-        </p>
-        <a>See All
-        </a>
-    </div>
-</div>
+    <div class="container mt-5 d-flex justify-content-around">
+        <div class="card">
+            <p class="heading">
+                <i class="fa-solid fa-gem" style="font-size: 30px;"></i>
 
-    <!-- Saldo -->
-
-    <!-- Kolom 1 -->
-    <div
-        class="main d-flex flex-column justify-content-center align-items-center mt-5">
-        <i class="fa-solid fa-wallet" style="font-size: 50px;"></i>
-        <div>
-            <h4 class="m-0">Kamu punya saldo</h4>
-
-            <?php
-            $username = $_SESSION['username'];
-            $sql = "SELECT saldo FROM atm WHERE username='$username'";
-            $result = $con->query($sql);
-            $user = $result->fetch_assoc();
-
-            echo "<p>Rp. " . number_format($user['saldo'], 0, ',', '.') . "</p>";
-            ?>
-
-        </div>
-    </div>
-
-    <div class="container">
-        <!-- Kolom 2 -->
-        <div class="d-flex flex-column w-100">
-            <a href="tarik_simpan.php" class="text-decoration-none w-100">
-                <div class="bg-primary p-4 w-100 text-light text-center rounded mb-2 d-flex align-items-center gap-2">
-                    <i class="fa-solid fa-money-bill fa-xl"></i>
-                    <h5 class="m-0">Tarik dan simpan saldo</h5>
-                </div>
-            </a>
-
-            <a href="transfer.php" class="text-decoration-none w-100">
-                <div class="bg-primary p-4 w-100 text-light text-center rounded d-flex align-items-center gap-2">
-                    <i class="fa-solid fa-money-bill-transfer fa-xl"></i>
-                    <h5 class="m-0">Transfer ke rekening lain</h5>
-                </div>
+                Top Up Murah!!
+            </p>
+            <p>
+                Top Up
+            </p>
+            <a>See All
             </a>
         </div>
-
+        <div class="card">
+            <p class="heading">
+                <i class="fa-solid fa-bolt" style="font-size: 30px;"></i>
+                Bayar Token Listrik
+            </p>
+            <p>
+                Token Listrik
+            </p>
+            <a>See All
+            </a>
+        </div>
+        <div class="card">
+            <p class="heading">
+                <i class="fa-solid fa-phone-volume" style="font-size: 30px;"></i>
+                Beli Pulsa Murah
+            </p>
+            <p>
+                Pulsa
+            </p>
+            <a>See All
+            </a>
+        </div>
+        <div class="card">
+            <p class="heading">
+                <i class="fa-brands fa-google-play" style="font-size: 30px;"></i>
+                Promo Google Play
+            </p>
+            <p>
+                Google Play
+            </p>
+            <a>See All
+            </a>
+        </div>
+        <div class="card">
+            <p class="heading">
+                <i class="fa-solid fa-book" style="font-size: 30px;"></i>
+                Promo Bayar Tagihan
+            </p>
+            <p>
+                Bayar Tagihan
+            </p>
+            <a>See All
+            </a>
+        </div>
     </div>
 
     <!-- Ubah pin -->
     <!-- Button trigger modal -->
-    <div class="w-100 text-center mt-3">
-        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            😢 Lupa pin?
-        </button>
-    </div>
-
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -413,20 +177,124 @@ if (!isset($_SESSION['username'])) {
                 </div>
 
                 <!-- Input form -->
-                <form action="proses/ubah.php" method="post">
+                <form action="./proses/ubah.php" method="post" style="background-color: rgba(14, 29, 62, 0.97); color: rgb(255, 255, 255);">
                     <div class="modal-body">
                         <label for="pin_baru">Masukkan pin</label>
                         <input type="password" class="form-control" placeholder="Pin baru" aria-label="Pin"
-                            aria-describedby="addon-wrapping" minlength="6" name="pin" required>
+                            aria-describedby="addon-wrapping" minlength="6" name="pin" required style="border-radius: 50px;">
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary" name="bt_ubah">Simpan</button>
+                        <button type="button" data-bs-dismiss="modal" style=" padding: 0.8em 1.7em;
+    background-color: transparent;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 400;
+    font-size: 17px;
+    border: 1px solid rgb(252, 7, 7);
+    font-family: inherit;
+    text-transform: unset;
+    color: rgb(255, 255, 255);
+    z-index: 1;
+    text-decoration: none;">Batal</button>
+                        <button type="submit" name="bt_ubah" style=" padding: 0.8em 1.7em;
+    background-color: transparent;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-size: 17px;
+    border: 1px solid rgb(239, 143, 9);
+    font-family: inherit;
+    text-transform: unset;
+    color: rgb(255, 255, 255);
+    z-index: 1;
+    text-decoration: none;
+    ">Simpan</button>
                         <!-- type="submit" -->
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+
+    <!-- tarik dan transfer -->
+    <div class="container mt-3 p-5 d-flex justify-content-around col-6">
+        <div class="kartu wallet">
+            <div class="overlay"></div>
+            <div class="circle">
+
+
+                <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="23 29 78 60" height="60px" width="78px">
+
+                    <defs></defs>
+                    <g transform="translate(23.000000, 29.500000)" fill-rule="evenodd" fill="none" stroke-width="1" stroke="none" id="icon">
+                        <rect rx="4.70247832" height="21.8788565" width="9.40495664" y="26.0333433" x="67.8357511" fill="#AC8BE9" id="Rectangle-3"></rect>
+                        <rect rx="4.70247832" height="10.962961" width="9.40495664" y="38.776399" x="67.8357511" fill="#6A5297" id="Rectangle-3"></rect>
+                        <polygon points="57.3086772 0 67.1649301 26.3776902 14.4413177 45.0699507 4.58506484 18.6922605" fill="#6A5297" id="Rectangle-2">
+                        </polygon>
+                        <path fill="#8B6FC0" id="Rectangle" d="M0,19.6104296 C0,16.2921718 2.68622235,13.6021923 5.99495032,13.6021923 L67.6438591,13.6021923 C70.9547788,13.6021923 73.6388095,16.2865506 73.6388095,19.6104296 L73.6388095,52.6639057 C73.6388095,55.9821635 70.9525871,58.672143 67.6438591,58.672143 L5.99495032,58.672143 C2.68403068,58.672143 0,55.9877847 0,52.6639057 L0,19.6104296 Z"></path>
+                        <path fill="#F6F1FF" id="Fill-12" d="M47.5173769,27.0835169 C45.0052827,24.5377699 40.9347162,24.5377699 38.422622,27.0835169 L36.9065677,28.6198808 L35.3905134,27.0835169 C32.8799903,24.5377699 28.8078527,24.5377699 26.2957585,27.0835169 C23.7852354,29.6292639 23.7852354,33.7559532 26.2957585,36.3001081 L36.9065677,47.0530632 L47.5173769,36.3001081 C50.029471,33.7559532 50.029471,29.6292639 47.5173769,27.0835169"></path>
+                        <rect height="12.863158" width="15.6082259" y="26.1162588" x="58.0305835" fill="#AC8BE9" id="Rectangle-4"></rect>
+                        <ellipse ry="2.23319575" rx="2.20116007" cy="33.0919007" cx="65.8346965" fill="#FFFFFF" id="Oval">
+                        </ellipse>
+                    </g>
+                </svg>
+
+            </div>
+            <h2><a href="transfer.php">Transfer? Klik disini!</a></h2>
+        </div>
+        <div class="kartu wallet">
+            <div class="overlay"></div>
+            <div class="circle">
+
+
+                <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="23 29 78 60" height="60px" width="78px">
+
+                    <defs></defs>
+                    <g transform="translate(23.000000, 29.500000)" fill-rule="evenodd" fill="none" stroke-width="1" stroke="none" id="icon">
+                        <rect rx="4.70247832" height="21.8788565" width="9.40495664" y="26.0333433" x="67.8357511" fill="#AC8BE9" id="Rectangle-3"></rect>
+                        <rect rx="4.70247832" height="10.962961" width="9.40495664" y="38.776399" x="67.8357511" fill="#6A5297" id="Rectangle-3"></rect>
+                        <polygon points="57.3086772 0 67.1649301 26.3776902 14.4413177 45.0699507 4.58506484 18.6922605" fill="#6A5297" id="Rectangle-2">
+                        </polygon>
+                        <path fill="#8B6FC0" id="Rectangle" d="M0,19.6104296 C0,16.2921718 2.68622235,13.6021923 5.99495032,13.6021923 L67.6438591,13.6021923 C70.9547788,13.6021923 73.6388095,16.2865506 73.6388095,19.6104296 L73.6388095,52.6639057 C73.6388095,55.9821635 70.9525871,58.672143 67.6438591,58.672143 L5.99495032,58.672143 C2.68403068,58.672143 0,55.9877847 0,52.6639057 L0,19.6104296 Z"></path>
+                        <path fill="#F6F1FF" id="Fill-12" d="M47.5173769,27.0835169 C45.0052827,24.5377699 40.9347162,24.5377699 38.422622,27.0835169 L36.9065677,28.6198808 L35.3905134,27.0835169 C32.8799903,24.5377699 28.8078527,24.5377699 26.2957585,27.0835169 C23.7852354,29.6292639 23.7852354,33.7559532 26.2957585,36.3001081 L36.9065677,47.0530632 L47.5173769,36.3001081 C50.029471,33.7559532 50.029471,29.6292639 47.5173769,27.0835169"></path>
+                        <rect height="12.863158" width="15.6082259" y="26.1162588" x="58.0305835" fill="#AC8BE9" id="Rectangle-4"></rect>
+                        <ellipse ry="2.23319575" rx="2.20116007" cy="33.0919007" cx="65.8346965" fill="#FFFFFF" id="Oval">
+                        </ellipse>
+                    </g>
+                </svg>
+
+            </div>
+            <h2><a href="tarik.php">Tambah Saldo? Klik disini!</a></h2>
+        </div>
+
+        <div class="kartu wallet">
+            <div class="overlay"></div>
+            <div class="circle">
+
+
+            <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="23 29 78 60" height="60px" width="78px">
+                <defs></defs>
+                <g transform="translate(23.000000, 29.500000)" fill-rule="evenodd" fill="none" stroke-width="1" stroke="none" id="icon">
+                    <rect rx="4.70247832" height="21.8788565" width="9.40495664" y="26.0333433" x="67.8357511" fill="#AC8BE9" id="Rectangle-3"></rect>
+                    <rect rx="4.70247832" height="10.962961" width="9.40495664" y="38.776399" x="67.8357511" fill="#6A5297" id="Rectangle-3"></rect>
+                    <polygon points="57.3086772 0 67.1649301 26.3776902 14.4413177 45.0699507 4.58506484 18.6922605" fill="#6A5297" id="Rectangle-2">
+                    </polygon>
+                    <path fill="#8B6FC0" id="Rectangle" d="M0,19.6104296 C0,16.2921718 2.68622235,13.6021923 5.99495032,13.6021923 L67.6438591,13.6021923 C70.9547788,13.6021923 73.6388095,16.2865506 73.6388095,19.6104296 L73.6388095,52.6639057 C73.6388095,55.9821635 70.9525871,58.672143 67.6438591,58.672143 L5.99495032,58.672143 C2.68403068,58.672143 0,55.9877847 0,52.6639057 L0,19.6104296 Z"></path>
+                    <path fill="#F6F1FF" id="Fill-12" d="M47.5173769,27.0835169 C45.0052827,24.5377699 40.9347162,24.5377699 38.422622,27.0835169 L36.9065677,28.6198808 L35.3905134,27.0835169 C32.8799903,24.5377699 28.8078527,24.5377699 26.2957585,27.0835169 C23.7852354,29.6292639 23.7852354,33.7559532 26.2957585,36.3001081 L36.9065677,47.0530632 L47.5173769,36.3001081 C50.029471,33.7559532 50.029471,29.6292639 47.5173769,27.0835169"></path>
+                    <rect height="12.863158" width="15.6082259" y="26.1162588" x="58.0305835" fill="#AC8BE9" id="Rectangle-4"></rect>
+                    <ellipse ry="2.23319575" rx="2.20116007" cy="33.0919007" cx="65.8346965" fill="#FFFFFF" id="Oval">
+                    </ellipse>
+                </g>
+                </svg>
+
+            </div>
+            <h2><a href="transfer.php">...? Klik disini!</a></h2>
         </div>
     </div>
 

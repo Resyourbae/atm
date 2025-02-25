@@ -1,0 +1,16 @@
+ <i class="fa-solid fa-wallet" style="font-size: 50px;"></i>
+        <div>
+            <h4 class="m-0">Kamu punya saldo</h4>
+
+            <?php
+            $username = $_SESSION['username'];
+            $sql = "SELECT saldo FROM atm WHERE username='$username'";
+            $result = $con->query($sql);
+            $user = $result->fetch_assoc();
+
+            echo "<p>Rp. " . number_format($user['saldo'], 0, ',', '.') . "</p>";
+            ?>
+
+        </div>
+
+         height="60px" width="78px"

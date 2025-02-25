@@ -20,20 +20,33 @@ $result = $con->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mau Transfer Ke Mana?</title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css'>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./fontawesome/css/all.css">
 </head>
+
+<style>
+    body {
+        background-color: rgba(14, 29, 62, 0.97);
+        /* background-image: url(./img/); */
+        font-family: "Space Grotesk", serif;
+        box-sizing: border-box;
+    }
+
+   i {
+    color: white;
+    text-decoration: none;
+   }
+
+</style>
 
 <body>
     <a href="dashboard.php">
-        <i class="fa-solid fa-arrow-left fa-xl ms-5 mt-5 text-dark"></i>
+        <i class="fa-solid fa-arrow-left fa-xl ms-5 mt-5"></i>
     </a>
     <div class="bg-primary p-5 rounded" style="margin: 75px 350px 0 350px;">
         <form action="./proses/p_transfer.php" method="post">
@@ -44,11 +57,11 @@ $result = $con->query($sql);
             </div>
             <label for="rek" class="form-label text-light">Pilih Rekening</label>
             <select class="form-select" name="tujuan" required>
-                    <option value=""></option>
-                    <?php while ($row = $result->fetch_assoc()) { ?>
-                        <option value="<?= $row['username']; ?>"><?= $row['username']; ?></option>
-                    <?php } ?>
-                </select>
+                <option value=""></option>
+                <?php while ($row = $result->fetch_assoc()) { ?>
+                    <option value="<?= $row['username']; ?>"><?= $row['username']; ?></option>
+                <?php } ?>
+            </select>
             <div class="mb-4">
                 <label for="pin" class="form-label text-light">Masukkan Pin</label>
                 <input type="password" class="form-control border border-dark" name="pin" placeholder="Masukkan pin"
@@ -59,6 +72,7 @@ $result = $con->query($sql);
             </div>
         </form>
     </div>
+    <script src="./fontawesome/js/all.js"></script>
 </body>
 
 </html>
